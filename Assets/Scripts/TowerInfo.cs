@@ -4,6 +4,9 @@ using System.Collections;
 public class TowerInfo : MonoBehaviour {
 	public GameObject mediumTower, lightTower, heavyTower;
 
+	// These values don't change
+	private static int lightTowerBuildCost = 200, mediumTowerBuildCost = 250, heavyTowerBuildCost = 300;
+
 	void Awake(){
 		DontDestroyOnLoad (gameObject);
 	}
@@ -19,13 +22,13 @@ public class TowerInfo : MonoBehaviour {
 		return null;
 	}
 
-	public int getTowerCost(string towerName){
+	public static int getTowerCost(string towerName){
 		if(towerName == "mediumTower")
-			return MediumTower.buildCost;
+			return mediumTowerBuildCost;
 		else if(towerName == "lightTower")
-			return LightTower.buildCost;
+			return lightTowerBuildCost;
 		else if(towerName == "heavyTower")
-			return HeavyTower.buildCost;
+			return heavyTowerBuildCost;
 		
 		return -1;
 	}

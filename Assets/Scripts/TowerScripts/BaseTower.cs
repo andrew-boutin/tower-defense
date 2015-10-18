@@ -1,13 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BaseTower : MonoBehaviour {
+public abstract class BaseTower : MonoBehaviour {
 	protected float bulletSpeed, fireSpeed, turnDamp;
 	protected int bulletDamage;
 	protected string towerName;
-
-	[HideInInspector]
-	public int buildCost, destroyReward;
+	protected int destroyReward;
 
 	private float fireTick;
 
@@ -26,6 +24,15 @@ public class BaseTower : MonoBehaviour {
 
 	// TODO: Could have a public virtual method to display animations on firing, etc.
 	// where specific towers would have to override...
+
+	public BaseTower(float bulletSpeed, float fireSpeed, int bulletDamage, string towerName, float turnDamp, int destroyReward){
+		this.bulletSpeed = bulletSpeed;
+		this.fireSpeed = fireSpeed;
+		this.bulletDamage = bulletDamage;
+		this.towerName = towerName;
+		this.turnDamp = turnDamp;
+		this.destroyReward = destroyReward;
+	}
 
 	// Use this for initialization
 	protected void Start () {
@@ -152,5 +159,13 @@ public class BaseTower : MonoBehaviour {
 
 	public void destroy(){
 		Destroy (gameObject);
+	}
+
+	public int getDestroyReward(){
+		return destroyReward;
+	}
+
+	public string getTowerName(){
+		return towerName;
 	}
 }

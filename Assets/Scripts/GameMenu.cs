@@ -17,18 +17,18 @@ public class GameMenu : MonoBehaviour {
 	[HideInInspector]
 	public BaseTower currentSelectedTower;
 
-	public int lightTowerCost, mediumTowerCost, heavyTowerCost;
+	private int lightTowerCost, mediumTowerCost, heavyTowerCost;
 
 	// Use this for initialization
 	void Start () {
-		lightTowerCost = LightTower.buildCost;
-		mediumTowerCost = MediumTower.buildCost;
-		heavyTowerCost = HeavyTower.buildCost;
-
 		menuState = MenuState.OuterMenu;
 
 		gameManager = gameObject.GetComponent<GameManager> ();
 		inputHandler = gameObject.GetComponent<InputHandler> ();
+
+		lightTowerCost = TowerInfo.getTowerCost ("lightTower");
+		mediumTowerCost = TowerInfo.getTowerCost ("mediumTower");
+		heavyTowerCost = TowerInfo.getTowerCost ("heavyTower");
 	}
 
 	void OnGUI(){

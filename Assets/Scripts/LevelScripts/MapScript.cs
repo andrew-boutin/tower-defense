@@ -24,12 +24,12 @@ public class MapScript : MonoBehaviour {
 
 	// Returns the number of enemies for a given round on this map
 	public int getNumEnemiesForRound(int roundNum){
-		return mapWaveInfo[roundNum - 1];
+		return mapWaveInfo[roundNum - 1].getTotalNumEnemiesInWave();
 	}
 
-	public int getNumEnemiesForWave(){
-
-	}
+//	public int getNumEnemiesForWave(){
+//
+	//}
 
 	public class WaveInfo{
 		List<EnemyGroupInfo> enemyGroups;
@@ -40,6 +40,15 @@ public class MapScript : MonoBehaviour {
 		
 		public WaveInfo(List<EnemyGroupInfo> eGroups){
 			enemyGroups = eGroups;
+		}
+
+		public int getTotalNumEnemiesInWave(){
+			int counter = 0;
+
+			foreach(EnemyGroupInfo enemyGroupInfo in enemyGroups)
+				counter += enemyGroupInfo.getNumEnemies();
+
+			return counter;
 		}
 	}
 
@@ -55,5 +64,8 @@ public class MapScript : MonoBehaviour {
 			numEnemies = numE;
 		}
 
+		public int getNumEnemies(){
+			return numEnemies;
+		}
 	}
 }

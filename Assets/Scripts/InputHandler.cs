@@ -31,7 +31,7 @@ public class InputHandler : MonoBehaviour {
 
 	public void createTower(string tower){
 		selectedTower = towerInfo.getTowerGameObject (tower);
-		int towerCost = towerInfo.getTowerCost (tower);
+		int towerCost = TowerInfo.getTowerCost (tower);
 
 		int curMoney = gameManager.getCurMoney ();
 
@@ -96,7 +96,7 @@ public class InputHandler : MonoBehaviour {
 		if(curBaseTower == null)
 			return;
 
-		int value = curBaseTower.destroyReward;
+		int value = curBaseTower.getDestroyReward();
 		Destroy (curBaseTower.gameObject);
 		gameMenu.currentSelectedTower = null;
 		gameManager.addMoney (value);
