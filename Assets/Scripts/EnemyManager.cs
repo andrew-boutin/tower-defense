@@ -42,17 +42,19 @@ public class EnemyManager : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if(enemyCounter >= numEnemiesInRound){ // when all enemies are gone the level/round is over
-			// inform GUI?
+		if(GameManager.curGameState == GameState.RoundPlaying){ // Only spawning enemies when the game is playing
+			if(enemyCounter >= numEnemiesInRound){ // when all enemies are gone the level/round is over
+				// inform GUI?
 
-			return; 
-		}
+				return; 
+			}
 
-		enemySpawnDelay++;
-		if (enemySpawnDelay >= enemySpawnDelayMax) { // Time to spawn an enemy
-			enemySpawnDelay = 0;
-			enemyCounter++;
-			spawnEnemy();
+			enemySpawnDelay++;
+			if (enemySpawnDelay >= enemySpawnDelayMax) { // Time to spawn an enemy
+				enemySpawnDelay = 0;
+				enemyCounter++;
+				spawnEnemy();
+			}
 		}
 	}
 
