@@ -48,8 +48,9 @@ public class InputHandler : MonoBehaviour {
 	}
 
 	public void requestStartRound(){
-		if (GameManager.curGameState == GameState.RoundNotStarted) { // have to be roundNotStarted
-			gameManager.roundNum += 1;
+		if (GameManager.curGameState == GameState.RoundNotStarted || 
+			GameManager.curGameState == GameState.LevelCompleted) {
+			gameManager.setUpNextRound();
 			enemyManager.setUpNextRound();
 			GameManager.curGameState = GameState.RoundPlaying;
 		}

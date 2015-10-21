@@ -53,7 +53,8 @@ public class Enemy : MonoBehaviour {
 				targetWaypoint = wayPoints[0];
 				wayPoints.Remove(targetWaypoint);
 			}
-			else{
+			else{ // Wasn't killed, reached the target
+				enemyManager.onEnemyDeath(0); // No reward
 				Destroy(gameObject);
 			}
 		}
@@ -61,6 +62,7 @@ public class Enemy : MonoBehaviour {
 
 	void die(){
 		// TODO: Have to inform someone that death happens - to tally kills and award money
+
 		enemyManager.onEnemyDeath (reward);
 		Destroy (gameObject);
 	}

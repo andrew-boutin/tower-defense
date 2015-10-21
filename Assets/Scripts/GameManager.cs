@@ -11,11 +11,13 @@ public class GameManager : MonoBehaviour {
 	[HideInInspector]
 	public static GameState curGameState;
 
-	[HideInInspector]
-	public int roundNum;
+	private static int roundNum;
+	private static int numTotalRounds;
 
 	[HideInInspector]
 	public int numKills;
+
+	private MapScript mapScript;
 
 	// track the game state
 
@@ -42,7 +44,10 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void levelLoad(){
-		curMoney = GameObject.Find("MapAdmin").GetComponent<MapScript>().startingMoneyAmount;
+		mapScript = GameObject.Find ("MapAdmin").GetComponent<MapScript> ();
+		curMoney = mapScript.startingMoneyAmount;
+		numTotalRounds = mapScript.getNumRounds();
+
 		gameMenu.setCurMoney(curMoney);
 		curGameState = GameState.RoundNotStarted;
 		roundNum = 0;
@@ -63,5 +68,17 @@ public class GameManager : MonoBehaviour {
 
 	public void addMoney(int val){
 		curMoney += val;
+	}
+
+	public void setUpNextRound(){
+		roundNum++;
+	}
+
+	public static int getRoundNum(){
+		return roundNum;
+	}
+
+	public static int getNumTotalRounds(){
+		return numTotalRounds;
 	}
 }

@@ -9,11 +9,9 @@ public class EnemyManager : MonoBehaviour {
 	private int enemyCounter;
 	private int enemySpawnDelay;
 	private int enemySpawnDelayMax = 100;
+	private int numEnemiesDestroyed;
 
 	private int numEnemiesInRound;
-	private int numRounds;
-
-	private int curRound;
 
 	private MapScript mapScript;
 	private InputHandler inputHandler;
@@ -21,35 +19,30 @@ public class EnemyManager : MonoBehaviour {
 	public void levelLoad(){
 		mapScript = GameObject.Find ("MapAdmin").GetComponent<MapScript> ();
 		inputHandler = gameObject.GetComponent<InputHandler> ();
-
-		curRound = 0;
 		
 		startLoc = mapScript.getStartLoc();
-		numRounds = mapScript.getNumRounds();
-		
-		enemyCounter = enemySpawnDelay = 0;
+
+		enemyCounter = enemySpawnDelay = numEnemiesDestroyed = 0;
 	}
 
 	public void setUpNextRound(){
-		if (curRound >= numRounds) {
-			return;		
-		}
-		curRound++;
-
-		numEnemiesInRound = mapScript.getNumEnemiesForRound (curRound);
-		enemyCounter = 0;
+		numEnemiesInRound = mapScript.getNumEnemiesForRound (GameManager.getRoundNum());
+		enemyCounter = numEnemiesDestroyed = 0;
+		// TODO: Enemy spawn delay?
 	}
 
 	// Update is called once per frame
 	void Update () {
 		if(GameManager.curGameState == GameState.RoundPlaying){ // Only spawning enemies when the game is playing
-			if(enemyCounter >= numEnemiesInRound){ // when all enemies are gone the level/round is over
-				// inform GUI?
-
-				return; 
+			if(numEnemiesDestroyed == numEnemiesInRound){
+				GameManager.curGameState = GameState.LevelCompleted;
 			}
 
+			if(enemyCounter >= numEnemiesInRound) // Done spawning enemies
+				return; 
+
 			enemySpawnDelay++;
+
 			if (enemySpawnDelay >= enemySpawnDelayMax) { // Time to spawn an enemy
 				enemySpawnDelay = 0;
 				enemyCounter++;
@@ -58,14 +51,6 @@ public class EnemyManager : MonoBehaviour {
 		}
 	}
 
-	/*
-	public void createTower(GameObject tower){
-		dragTower = Instantiate(tower, Vector3.zero, Quaternion.identity) as GameObject;
-		dragTower.GetComponent<SpriteRenderer>().color = new Color(1f,1f,1f,.5f); // 50% transparent
-		draggingTower = true;
-	}
-	*/
-
 	void spawnEnemy(){
 		GameObject e = Instantiate(enemy, startLoc, Quaternion.identity) as GameObject;
 		e.GetComponent<Enemy>().setHealth(50);
@@ -73,7 +58,15 @@ public class EnemyManager : MonoBehaviour {
 		// TODO: "start"
 	}
 
+	// 0 reward means wasn't killed, reached the end
 	public void onEnemyDeath(int reward){
-		inputHandler.onEnemyKill (reward);
+		if (reward == 0) {
+			// TODO: Take away health....
+		} 
+		else { // Tally the kill, get money
+			inputHandler.onEnemyKill (reward);
+		}
+
+		numEnemiesDestroyed++;
 	}
 }

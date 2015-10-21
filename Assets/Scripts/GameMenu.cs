@@ -9,8 +9,6 @@ public class GameMenu : MonoBehaviour {
 
 	private InputHandler inputHandler;
 
-	private GameManager gameManager;
-
 	[HideInInspector]
 	public MenuState menuState;
 
@@ -23,7 +21,6 @@ public class GameMenu : MonoBehaviour {
 	void Start () {
 		menuState = MenuState.OuterMenu;
 
-		gameManager = gameObject.GetComponent<GameManager> ();
 		inputHandler = gameObject.GetComponent<InputHandler> ();
 
 		lightTowerCost = TowerInfo.getTowerCost ("lightTower");
@@ -52,24 +49,30 @@ public class GameMenu : MonoBehaviour {
 
 		GUI.Label (new Rect (600, 62, 188, 50), "Crazy Canal Tower Defense\n\nRigid-Link Studios", "box");
 
+		Rect playOptionRect = new Rect (600, 112, 188, 50);
 
 		if (curGameState == GameState.RoundNotStarted) {
-			if (GUI.Button(new Rect(600, 112, 188, 50), "Start Round")){
-				inputHandler.requestStartRound();
+			if (GUI.Button (playOptionRect, "Start Round")) {
+				inputHandler.requestStartRound ();
 			}	
-		}
-		else if(curGameState == GameState.RoundPlaying){
-			if (GUI.Button(new Rect(600, 112, 188, 50), "Pause Round")){
-				inputHandler.requestPause();
+		} else if (curGameState == GameState.RoundPlaying) {
+			if (GUI.Button (playOptionRect, "Pause Round")) {
+				inputHandler.requestPause ();
 			}	
-		}
-		else if(curGameState == GameState.Paused){
-			if (GUI.Button(new Rect(600, 112, 188, 50), "Resume Round")){
-				inputHandler.resumeRound();
+		} else if (curGameState == GameState.Paused) {
+			if (GUI.Button (playOptionRect, "Resume Round")) {
+				inputHandler.resumeRound ();
 			}	
+		} else if (curGameState == GameState.LevelCompleted) {
+			if (GameManager.getRoundNum () == GameManager.getNumTotalRounds ()) {
+				GUI.Label (playOptionRect, "Game Finished");
+			}
+			else if (GUI.Button (playOptionRect, "Start Round *2*")) {
+				inputHandler.requestStartRound ();
+			}
 		}
 
-		GUI.Label (new Rect (600, 162, 188, 25), "Round: " + gameManager.roundNum, "box");
+		GUI.Label (new Rect (600, 162, 188, 25), "Round: " + GameManager.getRoundNum(), "box");
 		GUI.Label (new Rect (600, 187, 188, 25), "Leaks: not impl.", "box");
 		GUI.Label (new Rect (600, 212, 188, 25), "Kills: not impl.", "box");
 		GUI.Label (new Rect (600, 237, 188, 25), "Money: " + curMoney, "box");
