@@ -1,5 +1,4 @@
 # Tower Defense
-======
 
 This is a basic tower defense game written in C# using Unity.
 
@@ -24,6 +23,6 @@ Some Future Tasks:
 
 ###### Author
 
-Andy Boutin
-https://github.com/andrew-boutin
-www.andrewboutin.com
+Andy Boutin  
+https://github.com/andrew-boutin  
+www.andrewboutin.com  
