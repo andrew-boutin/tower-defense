@@ -52,7 +52,7 @@ public class Enemy : MonoBehaviour {
 			if(wayPoints.Count > 0){
 				targetWaypoint = wayPoints[0];
 				wayPoints.Remove(targetWaypoint);
-				faceTargetWayPoint (targetWaypoint); // Rotate enemy towards next waypoint
+				faceTargetVec3 (targetWaypoint); // Rotate enemy towards next waypoint
 			}
 			else{ // Wasn't killed, reached the target
 				enemyManager.onEnemyDeath(0); // No reward

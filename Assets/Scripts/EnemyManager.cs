@@ -8,7 +8,7 @@ public class EnemyManager : MonoBehaviour {
 
 	private int enemyCounter;
 	private int enemySpawnDelay;
-	private int enemySpawnDelayMax = 100;
+	private int enemySpawnDelayMax = 125;
 	private int numEnemiesDestroyed;
 
 	private int numEnemiesInRound;
