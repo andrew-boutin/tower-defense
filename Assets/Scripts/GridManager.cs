@@ -14,13 +14,15 @@ public class GridManager : MonoBehaviour {
 	
 	private int squarePixelWidth, gridPixelWidth, borderPixelWidth;
 
-	bool[,] playableAreas = new bool[12, 12]; // TODO: Set w/ borderPixelWidth?
+	bool[,] playableAreas; // = new bool[12, 12]; // TODO: Set w/ borderPixelWidth?
 
 	// Use this for initialization
 	void Start () {
 		squarePixelWidth = MapInfo.getSquarePixelWidth();
 		gridPixelWidth = MapInfo.getGridPixelWidth ();
 		borderPixelWidth = MapInfo.getBorderPixelWidth ();
+
+		playableAreas = new bool[12, 12];
 
 		for (int x = 0; x < playableAreas.GetLength(0); x += 1) {
 			for (int y = 0; y < playableAreas.GetLength(1); y += 1) {

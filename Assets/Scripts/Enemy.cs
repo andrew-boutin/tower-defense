@@ -52,6 +52,7 @@ public class Enemy : MonoBehaviour {
 			if(wayPoints.Count > 0){
 				targetWaypoint = wayPoints[0];
 				wayPoints.Remove(targetWaypoint);
+				faceTargetWayPoint (targetWaypoint); // Rotate enemy towards next waypoint
 			}
 			else{ // Wasn't killed, reached the target
 				enemyManager.onEnemyDeath(0); // No reward
@@ -77,6 +78,17 @@ public class Enemy : MonoBehaviour {
 
 	public void setEnemyManager(EnemyManager eM){
 		enemyManager = eM;
+	}
+
+	/**
+	 * Rotates the enemy object to face its next way point.
+	 */
+	public void faceTargetVec3(Vector3 rotTarget){
+		float diffX = rotTarget.x - transform.position.x;
+		float diffY = rotTarget.y - transform.position.y;
+		float angle = (Mathf.Atan2(diffY, diffX) * Mathf.Rad2Deg) - 90;
+		Vector3 rotVec = new Vector3 (0, 0, angle);
+		transform.rotation = Quaternion.Euler(rotVec);
 	}
 
 	// TODO: Have a "start" method that starts the enemy movement...
