@@ -81,7 +81,7 @@ public class GameMenu : MonoBehaviour {
 
 		handleTowerMenu ();
 
-		GUI.Label (new Rect (600, 462, 188, Screen.height - 412 - 10), "Info", "box");
+		GUI.Label (new Rect (600, 462, 188, Screen.height - 464 - 10), "Info", "box");
 
 		// TODO: put text in info box...
 	}
