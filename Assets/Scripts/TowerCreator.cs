@@ -7,13 +7,13 @@ public class TowerCreator : MonoBehaviour {
 	private bool draggingTower;
 	private GridManager gridManager;
 
-	private int gridPixelWidth;
+	private int squarePixelWidth;
 
 	private InputHandler inputHandler;
 
 	// Use this for initialization
 	void Start () {
-		gridPixelWidth = MapInfo.gridPixelWidth;
+		squarePixelWidth = MapInfo.getSquarePixelWidth();
 		draggingTower = false;
 		gridManager = gameObject.GetComponent<GridManager> ();
 		inputHandler = gameObject.GetComponent<InputHandler> ();
@@ -32,8 +32,8 @@ public class TowerCreator : MonoBehaviour {
 				inputHandler.towerCreated(TowerInfo.getTowerCost(dragTower.GetComponent<BaseTower>().getTowerName()));
 			}
 			else{
-				float x = gridManager.gridX + (gridPixelWidth / 2);
-				float y = gridManager.gridY + (gridPixelWidth / 2);
+				float x = gridManager.gridX + (squarePixelWidth / 2);
+				float y = gridManager.gridY + (squarePixelWidth / 2);
 
 				y = (600 - y);
 

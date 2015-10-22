@@ -19,7 +19,7 @@ public class Levels : MonoBehaviour {
 	}
 
 	void loadMap(int mapNum, string mapName){
-		MapInfo.mapNum = mapNum;
+		MapInfo.setMapNum(mapNum);
 		Application.LoadLevel(mapName);
 	}
 }

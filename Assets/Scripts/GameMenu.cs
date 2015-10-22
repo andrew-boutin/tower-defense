@@ -64,10 +64,12 @@ public class GameMenu : MonoBehaviour {
 				inputHandler.resumeRound ();
 			}	
 		} else if (curGameState == GameState.LevelCompleted) {
-			if (GameManager.getRoundNum () == GameManager.getNumTotalRounds ()) {
+			int roundNum = GameManager.getRoundNum ();
+
+			if (roundNum == GameManager.getNumTotalRounds ()) {
 				GUI.Label (playOptionRect, "Game Finished");
 			}
-			else if (GUI.Button (playOptionRect, "Start Round *2*")) {
+			else if (GUI.Button (playOptionRect, "Start Round " + (roundNum + 1))) {
 				inputHandler.requestStartRound ();
 			}
 		}

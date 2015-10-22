@@ -12,13 +12,15 @@ public class GridManager : MonoBehaviour {
 	[HideInInspector]
 	public float gridX, gridY;
 	
-	private int gridPixelWidth;
+	private int squarePixelWidth, gridPixelWidth, borderPixelWidth;
 
-	bool[,] playableAreas = new bool[18, 18];
+	bool[,] playableAreas = new bool[12, 12]; // TODO: Set w/ borderPixelWidth?
 
 	// Use this for initialization
 	void Start () {
-		gridPixelWidth = MapInfo.gridPixelWidth;
+		squarePixelWidth = MapInfo.getSquarePixelWidth();
+		gridPixelWidth = MapInfo.getGridPixelWidth ();
+		borderPixelWidth = MapInfo.getBorderPixelWidth ();
 
 		for (int x = 0; x < playableAreas.GetLength(0); x += 1) {
 			for (int y = 0; y < playableAreas.GetLength(1); y += 1) {
@@ -47,30 +49,27 @@ public class GridManager : MonoBehaviour {
 		gridX = (int)(Mathf.Floor (Event.current.mousePosition.x)); // Get position on GUI
 		gridY = (int)(Mathf.Floor (Event.current.mousePosition.y));
 		
-		gridX -= 12; // Subtract the border width
-		gridY -= 12;
+		gridX -= borderPixelWidth; // Subtract the border width
+		gridY -= borderPixelWidth;
 		
-		if(gridX <= 0) // Keep between 0 and 576
+		if(gridX <= 0) // Keep x between 0 and 576
 			gridX = 0;
-		else if(gridX >= (576 - gridPixelWidth))
-			gridX = 576 - gridPixelWidth;
+		else if(gridX >= (gridPixelWidth - squarePixelWidth))
+			gridX = gridPixelWidth - squarePixelWidth;
 		
-		if(gridY <= 0)
+		if(gridY <= 0) // Keep y between 0 and 576
 			gridY = 0;
-		else if(gridY >= (576 - gridPixelWidth))
-			gridY = 576 - gridPixelWidth;
+		else if(gridY >= (gridPixelWidth - squarePixelWidth))
+			gridY = gridPixelWidth - squarePixelWidth;
 		
-		gridX -= (gridX % gridPixelWidth); // Get the top left corner of the grid square
-		gridY -= (gridY % gridPixelWidth);
+		gridX -= (gridX % squarePixelWidth); // Get the top left corner of the grid square
+		gridY -= (gridY % squarePixelWidth);
 		
-		gridX += 12; 
-		gridY += 12;
+		gridX += borderPixelWidth; 
+		gridY += borderPixelWidth;
 
-		int col = (int)(Mathf.Floor (gridX - 12)) / 32;
-		int row = (int)(Mathf.Floor (gridY - 12)) / 32;
-
-		//if(Input.GetMouseButtonDown(0))
-		//	Debug.Log ("Row: " + row + " |Col: " + col);
+		int col = (int)(Mathf.Floor (gridX - borderPixelWidth)) / squarePixelWidth;
+		int row = (int)(Mathf.Floor (gridY - borderPixelWidth)) / squarePixelWidth;
 
 		if (playableAreas [row, col] == false) {
 			gridX = originalX;
@@ -78,6 +77,6 @@ public class GridManager : MonoBehaviour {
 		}
 		
 		// Current map selection area on grid
-		GUI.Label (new Rect (gridX, gridY, gridPixelWidth, gridPixelWidth), "", "box"); // TODO: Change the style used here
+		GUI.Label (new Rect (gridX, gridY, squarePixelWidth, squarePixelWidth), "", "box"); // TODO: Change the style used here
 	}
 }
