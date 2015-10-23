@@ -30,6 +30,9 @@ public class InputHandler : MonoBehaviour {
 	}
 
 	public void createTower(string tower){
+		if(gameMenu.currentSelectedTower != null)
+			gameMenu.currentSelectedTower.deSelected();
+
 		selectedTower = towerInfo.getTowerGameObject (tower);
 		int towerCost = TowerInfo.getTowerCost (tower);
 
@@ -42,7 +45,10 @@ public class InputHandler : MonoBehaviour {
 		}
 	}
 
-	public void towerCreated(int towerCost){
+	public void towerCreated(GameObject tower, int towerCost){
+		gameMenu.currentSelectedTower = tower.GetComponent<BaseTower> ();;
+		gameMenu.currentSelectedTower.selected ();
+
 		gameManager.subtractMoney (towerCost);
 		gameMenu.setCurMoney (gameManager.getCurMoney ());
 	}
@@ -83,10 +89,13 @@ public class InputHandler : MonoBehaviour {
 		Application.LoadLevel("MainMenu");
 	}
 
+	/**
+	 * If another tower was selected it hides its 'indicators' and saves the new tower reference as
+	 * the currently selected one.
+	 */
 	public void towerClicked(BaseTower baseTower){
-		if(gameMenu.currentSelectedTower != null){
-			gameMenu.currentSelectedTower.showHideSelector(false);
-		}
+		if(gameMenu.currentSelectedTower != null && gameMenu.currentSelectedTower != baseTower)
+			gameMenu.currentSelectedTower.deSelected();
 
 		gameMenu.currentSelectedTower = baseTower;
 	}

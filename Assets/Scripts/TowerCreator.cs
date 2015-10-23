@@ -29,7 +29,7 @@ public class TowerCreator : MonoBehaviour {
 				dragTower.GetComponent<SpriteRenderer>().color = new Color(1f,1f,1f,1f);
 				dragTower.GetComponent<BaseTower>().activated = true;
 				draggingTower = false;
-				inputHandler.towerCreated(TowerInfo.getTowerCost(dragTower.GetComponent<BaseTower>().getTowerName()));
+				inputHandler.towerCreated(dragTower, TowerInfo.getTowerCost(dragTower.GetComponent<BaseTower>().getTowerName()));
 			}
 			else{
 				float x = gridManager.gridX + (squarePixelWidth / 2);

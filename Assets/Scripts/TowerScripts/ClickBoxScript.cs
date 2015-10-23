@@ -9,7 +9,11 @@ public class ClickBoxScript : MonoBehaviour {
 		baseTower = gameObject.transform.parent.GetComponent<BaseTower> ();
 	}
 
+	/**
+	 * Lets the tower know that it was selected so it can handle showing indicators and inform
+	 * any other objects in the game such as the menu.
+	 */
 	void OnMouseDown(){
-		baseTower.clicked ();
+		baseTower.selected ();
 	}
 }

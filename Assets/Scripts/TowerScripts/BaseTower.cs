@@ -142,29 +142,63 @@ public abstract class BaseTower : MonoBehaviour {
 		}
 	}
 
-	public void clicked(){
+	/**
+	 * Called when the user selects the tower - lets the input handler know and shows this
+	 * tower's indicators.
+	 */
+	public void selected(){
 		inputHandler.towerClicked (this);
 		showHideSelector (true);
+		showHideAggroRadius (true);
 	}
 
-	public void showHideSelector(bool val){
+	/**
+	 * Hides this tower's indicators.
+	 */
+	public void deSelected(){
+		showHideSelector (false);
+		showHideAggroRadius (false);
+	}
+
+	/**
+	 * Can show or hide this tower's selector indicator.
+	 */
+	private void showHideSelector(bool val){
 		foreach (Transform t in transform){
 			if(t.name == "Selector"){
-				foreach(Transform child in t){
+				foreach(Transform child in t)
 					child.renderer.enabled = val;
-				}
 			}
 		}
 	}
 
+	/**
+	 * Can show or hide this tower's aggro radius indicator.
+	 */
+	private void showHideAggroRadius(bool val){
+		foreach (Transform t in transform){
+			if(t.name == "AggroRadius")
+				t.renderer.enabled = val;
+		}
+	}
+
+	/**
+	 * Removes this tower from everything.
+	 */
 	public void destroy(){
 		Destroy (gameObject);
 	}
 
+	/**
+	 * Returns the amount that this tower is worth destroying for.
+	 */
 	public int getDestroyReward(){
 		return destroyReward;
 	}
 
+	/**
+	 * Returns the name of this tower.
+	 */
 	public string getTowerName(){
 		return towerName;
 	}
