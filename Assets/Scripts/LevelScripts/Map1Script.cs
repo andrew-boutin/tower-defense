@@ -26,21 +26,18 @@ public class Map1Script : MapScript {
 
 		base.startingMoneyAmount = 500;
 
-		List<EnemyGroupInfo> wave1List = new List<EnemyGroupInfo> (){ new EnemyGroupInfo ("lightEnemy", 5),
-			new EnemyGroupInfo ("mediumEnemy", 5), new EnemyGroupInfo ("heavyEnemy", 5)
-		};
-
-		List<EnemyGroupInfo> wave2List = new List<EnemyGroupInfo> (){new EnemyGroupInfo("lightEnemy", 10),
-			new EnemyGroupInfo("lightEnemy", 15), new EnemyGroupInfo("lightEnemy", 20)
-		};
-
-		List<EnemyGroupInfo> wave3List = new List<EnemyGroupInfo> (){new EnemyGroupInfo("heavyEnemy", 20),
-			new EnemyGroupInfo("mediumEnemy", 20), new EnemyGroupInfo("lightEnemy", 20)
+		List<EnemyGroupInfo> wave1List = new List<EnemyGroupInfo> (){ new EnemyGroupInfo (MapInfo.airCraftCarrierName, 5),
+			new EnemyGroupInfo (MapInfo.battleShipName, 5), new EnemyGroupInfo (MapInfo.cruiserName, 5)
+		},
+		wave2List = new List<EnemyGroupInfo> (){new EnemyGroupInfo(MapInfo.destroyerName, 10),
+			new EnemyGroupInfo(MapInfo.galleonName, 15), new EnemyGroupInfo(MapInfo.rowBoatName, 20)
+		},
+		wave3List = new List<EnemyGroupInfo> (){new EnemyGroupInfo(MapInfo.sailBoatName, 20),
+			new EnemyGroupInfo(MapInfo.speedBoatName, 20), new EnemyGroupInfo(MapInfo.superYachtName, 20)
 		};
 
 		base.mapWaveInfo = new List<WaveInfo> (){
 			new WaveInfo(wave1List), new WaveInfo(wave2List), new WaveInfo(wave3List)
-
 		};
 
 		GameObject.Find ("Main Object").GetComponent<GameManager> ().levelLoad ();

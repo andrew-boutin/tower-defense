@@ -3,10 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Enemy : MonoBehaviour {
-
-	// TODO: Take out anything specific to an individual enemy and put it into another script with enemy name or type
-	// push the information down to this base class
-
+	// These variables are set in the editor to make the different kinds of enemies
+	public string enemyName;
 	public float health;
 	public float speed = 0.8F;
 	public int reward = 50;
@@ -38,9 +36,8 @@ public class Enemy : MonoBehaviour {
 		if(GameManager.curGameState == GameState.Paused)
 			return;
 
-		if (health <= 0) {
+		if (health <= 0)
 			die ();
-		}
 
 		move ();
 	}
@@ -62,8 +59,6 @@ public class Enemy : MonoBehaviour {
 	}
 
 	void die(){
-		// TODO: Have to inform someone that death happens - to tally kills and award money
-
 		enemyManager.onEnemyDeath (reward);
 		Destroy (gameObject);
 	}
@@ -90,6 +85,4 @@ public class Enemy : MonoBehaviour {
 		Vector3 rotVec = new Vector3 (0, 0, angle);
 		transform.rotation = Quaternion.Euler(rotVec);
 	}
-
-	// TODO: Have a "start" method that starts the enemy movement...
 }
