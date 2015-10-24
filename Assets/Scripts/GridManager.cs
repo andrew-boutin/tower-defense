@@ -18,9 +18,9 @@ public class GridManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		squarePixelWidth = MapInfo.getSquarePixelWidth();
-		gridPixelWidth = MapInfo.getGridPixelWidth ();
-		borderPixelWidth = MapInfo.getBorderPixelWidth ();
+		squarePixelWidth = MapInfo.squarePixelWidth;
+		gridPixelWidth = MapInfo.gridPixelWidth;
+		borderPixelWidth = MapInfo.borderPixelWidth;
 
 		playableAreas = new bool[12, 12];
 

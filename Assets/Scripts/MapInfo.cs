@@ -10,13 +10,13 @@ public class MapInfo : MonoBehaviour {
 
 	private static int mapNum; // Gets set when scene is loaded, used to access all other information
 
-	private static int squarePixelWidth = 48; // Size of grid squares
+	public const int squarePixelWidth = 48; // Size of grid squares
 
-	private static int numGridSquares = 144;
+	public const int numGridSquares = 144;
 
-	private static int gridPixelWidth = 576;
+	public const int gridPixelWidth = 576;
 
-	private static int borderPixelWidth = 12;
+	public const int borderPixelWidth = 12;
 
 	public static void setMapNum(int newMapNum){
 		mapNum = newMapNum;
@@ -24,21 +24,5 @@ public class MapInfo : MonoBehaviour {
 
 	public static int getMapNum(){
 		return mapNum;
-	}
-
-	public static int getSquarePixelWidth(){
-		return squarePixelWidth;
-	}
-
-	public static int getNumGridSquares(){
-		return numGridSquares;
-	}
-
-	public static int getGridPixelWidth(){
-		return gridPixelWidth;
-	}
-
-	public static int getBorderPixelWidth(){
-		return borderPixelWidth;
 	}
 }

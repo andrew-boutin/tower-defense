@@ -3,7 +3,7 @@ using System.Collections;
 
 public class MediumTower : BaseTower {
 
-	public MediumTower() : base(150.0F, 25.0F, 10, "mediumTower", 3.0F, 125){
+	public MediumTower() : base(150.0F, 10.0F, 10, "mediumTower", 8.0F, 125){
 		
 	}
 
