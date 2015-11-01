@@ -46,6 +46,13 @@ public class Bullet : MonoBehaviour {
 		damage = val;
 	}
 
+	/**
+	 * Sets the maximum distance the bullet can travel.
+	 */
+	public void setMaxDistance(float distance){
+		maxDistance = distance;
+	}
+
 	void OnTriggerEnter2D(Collider2D c){
 		if(c.gameObject.tag == "Enemy"){
 			hitCount++; // Increment on every call, incase multiple 

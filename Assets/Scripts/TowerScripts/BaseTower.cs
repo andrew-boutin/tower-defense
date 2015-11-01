@@ -79,9 +79,11 @@ public abstract class BaseTower : MonoBehaviour {
 
 	void fireRound(){
 		GameObject b = Instantiate (bullet, bulletSpawnObj.transform.position, Quaternion.identity) as GameObject;
-		b.GetComponent<Bullet> ().setDamage (bulletDamage);
+		Bullet newBullet = b.GetComponent<Bullet> ();
+		newBullet.setDamage (bulletDamage);
+		newBullet.setMaxDistance (aggroRadius);
 		Vector2 forceVec = transform.up * bulletSpeed;
-		b.GetComponent<Bullet> ().forceVec = forceVec;
+		newBullet.forceVec = forceVec;
 		b.rigidbody2D.AddForce (forceVec);	
 		fireTick = 0;
 	}
