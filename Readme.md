@@ -9,16 +9,15 @@ Focus is on making a basic functioning TD game.
 *Game is still in development!*
 
 Some of the Current Functionality:
-* Towers can be placed, they shoot at enemies in range, can be destroyed
-* Enemies spawn, move through level, take damage, die from towers or end of map
-* Basic pre-game menu system & in game menu system
-* Multiple rounds supported, money earned on kills, different tower types
+* 3 tower types can be placed, destroyed for money, and shoot at enemies in range.
+* Multiple enemy types spawn, move through level, take damage, die from towers or end of map.
+* Basic pre-game menu system & in game menu system.
+* Multiple rounds supported, money earned on kills.
 
 Some Future Tasks:
-* Actual tower, enemy, & map images are being designed
-* Polish pre-game/in-game menu systems
-* Different enemy types
-* Upgradable towers
+* Actual tower images are being designed.
+* Finish pre-game/in-game menu systems & add skins.
+* Upgradable towers with different types.
 * Stat tracking: total kills, damage taken, etc.
 
 ###### Author
