@@ -22,6 +22,9 @@ public class MainMenu : MonoBehaviour {
 			// Load the credits scene
 			Application.LoadLevel("Credits");
 		}
+		else if(GUI.Button(new Rect(10, 130, 150, 20), "Exit Game")){
+			Application.Quit();
+		}
 	}
 	
 }

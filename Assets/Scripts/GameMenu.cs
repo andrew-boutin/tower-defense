@@ -129,39 +129,51 @@ public class GameMenu : MonoBehaviour {
 		else if (GUI.Button (new Rect (600, 362, 188, 50), "Heavy Tower: " + heavyTowerCost)) {
 			inputHandler.createTower("heavyTower");
 		}
-		else if(GUI.Button(new Rect(600, 412, 188, 50), "Back")){
-			menuState = MenuState.OuterMenu;
-		}
+
+		backButton ();
 
 		// TODO: Handle canceling build...
 	}
 
 	public void onUpgradeTowerMenu(){
-		// TODO: ...
-		// handle if no tower is selected
-
-		if(GUI.Button(new Rect(600, 412, 188, 50), "Back")){
-			menuState = MenuState.OuterMenu;
+		if (currentSelectedTower != null) {
+			
 		}
+		else
+			noTowerSelectedLabel ();
+
+		backButton ();
 	}
 
 	public void onDestroyTowerMenu(){
-		if(GUI.Button (new Rect (600, 262, 188, 50), "Destroy Tower")){
-			inputHandler.destroyTower();
-		}
+		if (currentSelectedTower != null) {
+			int val = currentSelectedTower.getDestroyReward ();
 
-		// TODO: ...
-		// handle if no tower is selected
+			if (GUI.Button (new Rect (600, 262, 188, 150), "Destroy Tower\n\nWorth " + val)) {
+				inputHandler.destroyTower ();
+			}
+		} 
+		else
+			noTowerSelectedLabel ();
 
-		if(GUI.Button(new Rect(600, 412, 188, 50), "Back")){
-			menuState = MenuState.OuterMenu;
-		}
+		backButton ();
 	}
 
 	public void onTowerInfoMenu(){
-		// TODO: ....
-		// handle if no tower is selected
+		if (currentSelectedTower != null) {
 
+		}
+		else
+			noTowerSelectedLabel ();
+
+		backButton ();
+	}
+
+	public void noTowerSelectedLabel(){
+		GUI.Label (new Rect (600, 262, 188, 150), "No Tower Selected", "box");
+	}
+
+	public void backButton(){
 		if(GUI.Button(new Rect(600, 412, 188, 50), "Back")){
 			menuState = MenuState.OuterMenu;
 		}
@@ -174,13 +186,7 @@ public class GameMenu : MonoBehaviour {
 
 /* TODO:s
  * Show info in the info box
- * Show tower costs for building
- * Show tower rewards for destroying
- * Support destroying
  * Support upgrading
  * Show upgrade costs
  * Upgrade menu
- * Destroy menu
- * 
- * 
  */
