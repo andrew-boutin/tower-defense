@@ -20,8 +20,9 @@ Some Future Tasks:
 * Upgradable towers with different types.
 * Stat tracking: total kills, damage taken, etc.
 
+---
+
 ###### Author
 
-Andy Boutin  
-https://github.com/andrew-boutin  
+Andy Boutin
 www.andrewboutin.com  
