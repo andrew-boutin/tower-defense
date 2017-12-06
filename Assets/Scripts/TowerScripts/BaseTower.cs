@@ -24,7 +24,6 @@ public abstract class BaseTower : MonoBehaviour {
 
 	// TODO: Could have a public virtual method to display animations on firing, etc.
 	// where specific towers would have to override...
-
 	public BaseTower(float bulletSpeed, float fireSpeed, int bulletDamage, string towerName, float turnDamp, int destroyReward){
 		this.bulletSpeed = bulletSpeed;
 		this.fireSpeed = fireSpeed;
@@ -203,5 +202,21 @@ public abstract class BaseTower : MonoBehaviour {
 	 */
 	public string getTowerName(){
 		return towerName;
+	}
+
+	public float getBulletSpeed() {
+		return bulletSpeed;
+	}
+
+	public float getFireSpeed() {
+		return fireSpeed;
+	}
+
+	public int getBulletDamage() {
+		return bulletDamage;
+	}
+
+	public float getTurnDamp() {
+		return turnDamp;
 	}
 }

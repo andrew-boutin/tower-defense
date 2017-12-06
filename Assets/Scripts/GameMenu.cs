@@ -47,7 +47,7 @@ public class GameMenu : MonoBehaviour {
 			inputHandler.goToMainMenu();
 		}
 
-		GUI.Label (new Rect (600, 62, 188, 50), "Crazy Canal Tower Defense\n\nRigid-Link Studios", "box");
+		GUI.Label (new Rect (600, 62, 188, 50), "Crazy Canal Tower Defense\n\nBaking Bits Studios", "box");
 
 		Rect playOptionRect = new Rect (600, 112, 188, 50);
 
@@ -81,9 +81,27 @@ public class GameMenu : MonoBehaviour {
 
 		handleTowerMenu ();
 
-		GUI.Label (new Rect (600, 462, 188, Screen.height - 464 - 10), "Info", "box");
+		displayTowerStats ();
+	}
 
-		// TODO: put text in info box...
+	private void displayTowerStats() {
+		float bulletSpeed = 0;
+		float turnDamp = 0;
+		float fireSpeed = 0;
+		int bulletDamage = 0;
+
+		if (currentSelectedTower != null) {
+			bulletSpeed = currentSelectedTower.getBulletSpeed ();
+			turnDamp = currentSelectedTower.getTurnDamp ();
+			bulletDamage = currentSelectedTower.getBulletDamage ();
+			fireSpeed = currentSelectedTower.getFireSpeed ();
+		}
+	
+		GUI.Label (new Rect(600, 462, 188, 25), "Current Tower Stats", "box");
+		GUI.Label (new Rect(600, 487, 188, 25), "Bullet Speed: " + bulletSpeed, "box");
+		GUI.Label (new Rect(600, 512, 188, 25), "Turn Speed: " + turnDamp, "box");
+		GUI.Label (new Rect(600, 537, 188, 25), "Bullet Damage: " + bulletDamage, "box");
+		GUI.Label (new Rect(600, 562, 188, 25), "Fire Delay: " + fireSpeed, "box");
 	}
 
 	public void handleTowerMenu(){
@@ -151,17 +169,16 @@ public class GameMenu : MonoBehaviour {
 
 			if (GUI.Button (new Rect (600, 262, 188, 150), "Destroy Tower\n\nWorth " + val)) {
 				inputHandler.destroyTower ();
+				menuState = MenuState.OuterMenu;
 			}
-		} 
-		else
-			noTowerSelectedLabel ();
-
+		}
+			
 		backButton ();
 	}
 
 	public void onTowerInfoMenu(){
 		if (currentSelectedTower != null) {
-
+			
 		}
 		else
 			noTowerSelectedLabel ();
