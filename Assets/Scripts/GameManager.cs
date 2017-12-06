@@ -19,11 +19,9 @@ public class GameManager : MonoBehaviour {
 
 	private MapScript mapScript;
 
-	// track the game state
+	private static int health;
 
-	// track score
-	// track money
-	// track lives
+	private static int score;
 
 	// Use this for initialization
 	void Start () {
@@ -36,11 +34,6 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-	//	if (Input.GetMouseButtonDown (0)) { // Used for building waypoint system
-	//		Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-	//		Debug.Log("X: " + pos.x + " | y: " + pos.y);		
-	//	}
-
 	}
 
 	public void levelLoad(){
@@ -52,6 +45,8 @@ public class GameManager : MonoBehaviour {
 		curGameState = GameState.RoundNotStarted;
 		roundNum = 0;
 		numKills = 0;
+		health = 100;
+		score = 0;
 
 		enemyManager.levelLoad ();
 		gridManager.levelLoad ();
@@ -68,10 +63,13 @@ public class GameManager : MonoBehaviour {
 
 	public void addMoney(int val){
 		curMoney += val;
+		score += val;
 	}
 
 	public void setUpNextRound(){
 		roundNum++;
+		score += roundNum * health * 2;
+		health = 100;
 	}
 
 	public static int getRoundNum(){
@@ -80,5 +78,13 @@ public class GameManager : MonoBehaviour {
 
 	public static int getNumTotalRounds(){
 		return numTotalRounds;
+	}
+
+	public static int getHealth() {
+		return health;
+	}
+
+	public static int getScore() {
+		return score;
 	}
 }

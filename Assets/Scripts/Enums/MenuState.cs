@@ -5,6 +5,5 @@ public enum MenuState {
 	OuterMenu,
 	CreateTowerMenu,
 	UpgradeTowerMenu,
-	DestroyTowerMenu,
-	TowerInfoMenu
+	DestroyTowerMenu
 }
