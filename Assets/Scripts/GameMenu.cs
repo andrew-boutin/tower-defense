@@ -166,7 +166,21 @@ public class GameMenu : MonoBehaviour {
 
 	public void onUpgradeTowerMenu(){
 		if (currentSelectedTower != null) {
-			
+			int containerHeight = 37;
+			int firstContainerY = 262;
+
+			if (GUI.Button (new Rect(600, firstContainerY, 188, containerHeight), "++ Bullet Speed: 25")) {
+				inputHandler.upgradeBulletSpeed (currentSelectedTower);
+			}
+			else if (GUI.Button (new Rect(600, firstContainerY + containerHeight, 188, 37), "++ Turn Speed: 25")) {
+				inputHandler.upgradeTurnSpeed (currentSelectedTower);
+			}
+			else if (GUI.Button (new Rect(600, firstContainerY + (2 * containerHeight), 188, 37), "++ Bullet Damage: 25")) {
+				inputHandler.upgradeBulletDamage (currentSelectedTower);
+			}
+			else if (GUI.Button (new Rect(600, firstContainerY + (3 * containerHeight), 188, 37), "-- Fire Delay: 25")) {
+				inputHandler.upgradeFireDelay (currentSelectedTower);
+			}
 		}
 		else
 			noTowerSelectedLabel ();

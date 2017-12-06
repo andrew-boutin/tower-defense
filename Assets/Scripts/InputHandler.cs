@@ -112,4 +112,37 @@ public class InputHandler : MonoBehaviour {
 		gameManager.addMoney (value);
 		gameMenu.setCurMoney (gameManager.getCurMoney ());
 	}
+
+	// TODO: Set the costs here and in menu correctly
+	public void upgradeBulletSpeed(BaseTower baseTower) {
+		if (gameManager.getCurMoney () >= 25) {
+			baseTower.increaseBulletSpeed ();
+			gameManager.subtractMoney (25);
+			gameMenu.setCurMoney (gameManager.getCurMoney ());
+		}
+	}
+
+	public void upgradeTurnSpeed(BaseTower baseTower) {
+		if (gameManager.getCurMoney () >= 25) {
+			baseTower.increaseTurnSpeed ();
+			gameManager.subtractMoney (25);
+			gameMenu.setCurMoney (gameManager.getCurMoney ());
+		}
+	}
+
+	public void upgradeBulletDamage(BaseTower baseTower) {
+		if (gameManager.getCurMoney () >= 25) {
+			baseTower.increaseBulletDamage ();
+			gameManager.subtractMoney (25);
+			gameMenu.setCurMoney (gameManager.getCurMoney ());
+		}
+	}
+
+	public void upgradeFireDelay(BaseTower baseTower) {
+		if (gameManager.getCurMoney () >= 25) {
+			baseTower.decreaseFireDelay ();
+			gameManager.subtractMoney (25);
+			gameMenu.setCurMoney (gameManager.getCurMoney ());
+		}
+	}
 }

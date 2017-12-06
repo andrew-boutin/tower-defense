@@ -219,4 +219,20 @@ public abstract class BaseTower : MonoBehaviour {
 	public float getTurnDamp() {
 		return turnDamp;
 	}
+
+	public void increaseBulletSpeed() {
+		bulletSpeed += 5;
+	}
+
+	public void increaseTurnSpeed() {
+		turnDamp += 0.25f;
+	}
+
+	public void increaseBulletDamage() {
+		bulletDamage += 1;
+	}
+
+	public void decreaseFireDelay() {
+		fireSpeed -= 0.25f;
+	}
 }
