@@ -41,7 +41,7 @@ public abstract class BaseTower : MonoBehaviour {
 		showHideSelector (false);
 
 		activated = false;
-		aggroRadius = gameObject.collider2D.GetComponent<CircleCollider2D>().radius;
+		aggroRadius = gameObject.GetComponent<Collider2D>().GetComponent<CircleCollider2D>().radius;
 		hasTarget = false;
 		fireTick = 0;
 		potentialTargets = new ArrayList ();
@@ -84,7 +84,7 @@ public abstract class BaseTower : MonoBehaviour {
 		newBullet.setMaxDistance (aggroRadius);
 		Vector2 forceVec = transform.up * bulletSpeed;
 		newBullet.forceVec = forceVec;
-		b.rigidbody2D.AddForce (forceVec);	
+		b.GetComponent<Rigidbody2D>().AddForce (forceVec);	
 		fireTick = 0;
 	}
 
@@ -169,7 +169,7 @@ public abstract class BaseTower : MonoBehaviour {
 		foreach (Transform t in transform){
 			if(t.name == "Selector"){
 				foreach(Transform child in t)
-					child.renderer.enabled = val;
+					child.GetComponent<Renderer>().enabled = val;
 			}
 		}
 	}
@@ -180,7 +180,7 @@ public abstract class BaseTower : MonoBehaviour {
 	private void showHideAggroRadius(bool val){
 		foreach (Transform t in transform){
 			if(t.name == "AggroRadius")
-				t.renderer.enabled = val;
+				t.GetComponent<Renderer>().enabled = val;
 		}
 	}
 

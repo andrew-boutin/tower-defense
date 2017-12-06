@@ -23,14 +23,14 @@ public class Bullet : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(GameManager.curGameState == GameState.Paused){
-			gameObject.rigidbody2D.velocity = Vector3.zero;
-			gameObject.rigidbody2D.angularVelocity = 0;
+			gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+			gameObject.GetComponent<Rigidbody2D>().angularVelocity = 0;
 			wasPaused = true;
 			return;
 		}
 
 		if (wasPaused) {
-			gameObject.rigidbody2D.AddForce (forceVec);	
+			gameObject.GetComponent<Rigidbody2D>().AddForce (forceVec);	
 			wasPaused = false;
 		}
 
