@@ -34,12 +34,7 @@ public class GameMenu : MonoBehaviour {
 		if(curGameState == GameState.NotInGame)
 			return;
 
-		// 12 pixel border on each side // TODO: Change this style used here
-		GUI.Label (new Rect (0, 12, 12, 576), "", "box");
-		GUI.Label (new Rect (588, 12, 12, 576), "", "box");
-		GUI.Label (new Rect (788, 12, 12, 576), "", "box");
-		GUI.Label (new Rect (0, 0, 800, 12), "", "box");
-		GUI.Label (new Rect (0, 588, 800, 12), "", "box");
+		displayMenuDividers ();
 
 		// 200 pixel wide control panel on the right
 
@@ -47,7 +42,8 @@ public class GameMenu : MonoBehaviour {
 			inputHandler.goToMainMenu();
 		}
 
-		GUI.Label (new Rect (600, 62, 188, 50), "Crazy Canal Tower Defense\n\nBaking Bits Studios", "box");
+		GUI.Label (new Rect (600, 62, 188, 25), "Crazy Canal Tower Defense", "box");
+		GUI.Label (new Rect (600, 87, 188, 25), "Baking Bits Studios", "box");
 
 		Rect playOptionRect = new Rect (600, 112, 188, 50);
 
@@ -67,21 +63,36 @@ public class GameMenu : MonoBehaviour {
 			int roundNum = GameManager.getRoundNum ();
 
 			if (roundNum == GameManager.getNumTotalRounds ()) {
-				GUI.Label (playOptionRect, "Game Finished");
+				if(GUI.Button(playOptionRect, "End Game")){
+					inputHandler.goToMainMenu ();
+				}
 			}
 			else if (GUI.Button (playOptionRect, "Start Round " + (roundNum + 1))) {
 				inputHandler.requestStartRound ();
 			}
 		}
 
-		GUI.Label (new Rect (600, 162, 188, 25), "Round: " + GameManager.getRoundNum(), "box");
-		GUI.Label (new Rect (600, 187, 188, 25), "Leaks: not impl.", "box");
-		GUI.Label (new Rect (600, 212, 188, 25), "Kills: not impl.", "box");
-		GUI.Label (new Rect (600, 237, 188, 25), "Money: " + curMoney, "box");
+		displayGameStats ();
 
 		handleTowerMenu ();
 
 		displayTowerStats ();
+	}
+
+	private void displayGameStats() {
+		GUI.Label (new Rect (600, 162, 188, 25), "Round: " + GameManager.getRoundNum() + " / " + GameManager.getNumTotalRounds(), "box");
+		GUI.Label (new Rect (600, 187, 188, 25), "Leaks: not impl.", "box");
+		GUI.Label (new Rect (600, 212, 188, 25), "Kills: not impl.", "box");
+		GUI.Label (new Rect (600, 237, 188, 25), "Money: " + curMoney, "box");
+	}
+
+	private void displayMenuDividers() {
+		// 12 pixel border on each side // TODO: Change this style used here
+		GUI.Label (new Rect (0, 12, 12, 576), "", "box");
+		GUI.Label (new Rect (588, 12, 12, 576), "", "box");
+		GUI.Label (new Rect (788, 12, 12, 576), "", "box");
+		GUI.Label (new Rect (0, 0, 800, 12), "", "box");
+		GUI.Label (new Rect (0, 588, 800, 12), "", "box");
 	}
 
 	private void displayTowerStats() {
@@ -200,10 +211,3 @@ public class GameMenu : MonoBehaviour {
 		curMoney = val;
 	}
 }
-
-/* TODO:s
- * Show info in the info box
- * Support upgrading
- * Show upgrade costs
- * Upgrade menu
- */
