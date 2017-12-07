@@ -13,9 +13,8 @@ public class GameManager : MonoBehaviour {
 
 	private static int roundNum;
 	private static int numTotalRounds;
-
-	[HideInInspector]
-	public int numKills;
+	private static int numKills;
+	private static int numLeaks;
 
 	private MapScript mapScript;
 
@@ -47,6 +46,7 @@ public class GameManager : MonoBehaviour {
 		numKills = 0;
 		health = 100;
 		score = 0;
+		numLeaks = 0;
 
 		enemyManager.levelLoad ();
 		gridManager.levelLoad ();
@@ -86,5 +86,30 @@ public class GameManager : MonoBehaviour {
 
 	public static int getScore() {
 		return score;
+	}
+
+	public static int getNumKills() {
+		return numKills;
+	}
+
+	public static void addKill() {
+		numKills++;
+	}
+
+	public static int getNumLeaks() {
+		return numLeaks;
+	}
+
+	public static void addLeak() {
+		numLeaks++;
+	}
+
+	public static void loseHealth(int val) {
+		health -= val;
+
+		if (health < 0) {
+			health = 0;
+			curGameState = GameState.GameOver;
+		}
 	}
 }

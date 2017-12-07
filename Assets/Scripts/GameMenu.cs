@@ -88,8 +88,8 @@ public class GameMenu : MonoBehaviour {
 	private void displayGameStats() {
 		GUI.Label (new Rect (menuX, 162, menuItemWidth, 25), "Round: " + GameManager.getRoundNum() + " / " + GameManager.getNumTotalRounds(), "box");
 		GUI.Label (new Rect (menuX, 187, menuItemWidth, 25), "Health: " + GameManager.getHealth (), "box");
-		GUI.Label (new Rect (menuX, 212, menuItemWidth, 25), "Leaks: not impl.", "box");
-		GUI.Label (new Rect (menuX, 237, menuItemWidth, 25), "Kills: not impl.", "box");
+		GUI.Label (new Rect (menuX, 212, menuItemWidth, 25), "Leaks: " + GameManager.getNumLeaks(), "box");
+		GUI.Label (new Rect (menuX, 237, menuItemWidth, 25), "Kills: " + GameManager.getNumKills(), "box");
 		GUI.Label (new Rect (menuX, 262, menuItemWidth, 25), "Money: " + curMoney, "box");
 		GUI.Label (new Rect (menuX, 287, menuItemWidth, 25), "Score: " + GameManager.getScore (), "box");
 	}

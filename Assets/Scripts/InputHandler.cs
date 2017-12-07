@@ -63,10 +63,15 @@ public class InputHandler : MonoBehaviour {
 	}
 
 	public void onEnemyKill(int val){
-		// TODO: Thread safe...?
-		gameManager.numKills++;
+		GameManager.addKill();
 		gameManager.addMoney (val);
 		gameMenu.setCurMoney (gameManager.getCurMoney ());
+	}
+
+	public void onEnemyLeak() {
+		GameManager.addLeak ();
+		// TODO: Could have different health values based on the enemy
+		GameManager.loseHealth (10);
 	}
 	
 	public void requestPause(){ 

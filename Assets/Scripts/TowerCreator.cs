@@ -55,7 +55,7 @@ public class TowerCreator : MonoBehaviour {
 		y = (600 - y);
 
 		Vector3 mousePos = Camera.main.ScreenToWorldPoint (new Vector3(x, y, 0));
-		mousePos.z = 0;
+		mousePos.z = -1;
 		dragTower.transform.position = mousePos;
 	}
 

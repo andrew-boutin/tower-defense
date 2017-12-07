@@ -33,13 +33,12 @@ public class Enemy : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(GameManager.curGameState == GameState.Paused)
-			return;
+		if (GameManager.curGameState != GameState.Paused && GameManager.curGameState != GameState.GameOver) {
+			if (health <= 0)
+				die ();
 
-		if (health <= 0)
-			die ();
-
-		move ();
+			move ();
+		}
 	}
 
 	void move(){

@@ -56,22 +56,21 @@ public abstract class BaseTower : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if(GameManager.curGameState == GameState.Paused)
-			return;
+		if (GameManager.curGameState != GameState.Paused && GameManager.curGameState != GameState.GameOver) {
+			if(!activated) return; // Dragging or something
 
-		if(!activated) return; // Dragging or something
+			if (fireTick < fireSpeed) {
+				fireTick++;		
+			}
 
-		if (fireTick < fireSpeed) {
-			fireTick++;		
-		}
+			getTarget ();
 
-		getTarget ();
+			if (hasTarget) {
+				handleTowerRotation();
 
-		if (hasTarget) {
-			handleTowerRotation();
-
-			if(fireTick >= fireSpeed){
-				fireRound();
+				if(fireTick >= fireSpeed){
+					fireRound();
+				}
 			}
 		}
 	}

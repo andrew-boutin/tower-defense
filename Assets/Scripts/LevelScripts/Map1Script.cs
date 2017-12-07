@@ -20,9 +20,9 @@ public class Map1Script : MapScript {
 			  11,1,            11,4, 11,5,          11,8,            11,11
 		};
 
-		base.wayPoints = new List<Vector3> (){ new Vector3(-3.65f, 5.0f, 0), new Vector3(-3.65f, 2.8f, 0), 
-			new Vector3(1.15f, 2.8f, 0), new Vector3(1.15f, 0.4f, 0), new Vector3(-4.45f, 0.4f, 0),
-			new Vector3(-4.45f, -2.0f, 0), new Vector3(0.35f, -2.0f, 0), new Vector3(0.35f, -4.5f)};
+		base.wayPoints = new List<Vector3> (){ new Vector3(-3.65f, 5.0f, -1), new Vector3(-3.65f, 2.8f, -1), 
+			new Vector3(1.15f, 2.8f, -1), new Vector3(1.15f, 0.4f, -1), new Vector3(-4.45f, 0.4f, -1),
+			new Vector3(-4.45f, -2.0f, -1), new Vector3(0.35f, -2.0f, -1), new Vector3(0.35f, -4.5f, -1)};
 
 		base.startingMoneyAmount = 500;
 

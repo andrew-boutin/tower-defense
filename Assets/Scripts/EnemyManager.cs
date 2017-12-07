@@ -119,7 +119,7 @@ public class EnemyManager : MonoBehaviour {
 	// 0 reward means wasn't killed, reached the end
 	public void onEnemyDeath(int reward){
 		if (reward == 0) {
-			// TODO: Take away health....
+			inputHandler.onEnemyLeak();
 		} 
 		else { // Tally the kill, get money
 			inputHandler.onEnemyKill (reward);
