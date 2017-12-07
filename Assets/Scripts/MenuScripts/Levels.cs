@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Levels : MonoBehaviour {
 
@@ -8,7 +8,7 @@ public class Levels : MonoBehaviour {
 		
 		// Display 3 buttons
 		if (GUI.Button (new Rect (10, 40, 150, 20), "Main Menu")) {
-			Application.LoadLevel("MainMenu");
+			SceneManager.LoadScene("MainMenu");
 		}
 		else if(GUI.Button (new Rect(10, 70, 150, 20), "Map 1")){
 			loadMap(1, "Map1");
@@ -20,6 +20,6 @@ public class Levels : MonoBehaviour {
 
 	void loadMap(int mapNum, string mapName){
 		MapInfo.setMapNum(mapNum);
-		Application.LoadLevel(mapName);
+		SceneManager.LoadScene(mapName);
 	}
 }

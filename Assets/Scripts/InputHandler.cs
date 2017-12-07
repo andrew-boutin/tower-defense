@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class InputHandler : MonoBehaviour {
 
@@ -86,7 +86,7 @@ public class InputHandler : MonoBehaviour {
 	public void goToMainMenu(){
 		GameManager.curGameState = GameState.NotInGame;
 		// TODO: Other things...
-		Application.LoadLevel("MainMenu");
+		SceneManager.LoadScene("MainMenu");
 	}
 
 	/**

@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class GameInfo : MonoBehaviour {
 
@@ -12,7 +12,7 @@ public class GameInfo : MonoBehaviour {
 		// Display 3 buttons
 		if (GUI.Button (new Rect (10, 40, 150, 20), "Main Menu")) {
 			// Load the level selection scene	
-			Application.LoadLevel("MainMenu");
+			SceneManager.LoadScene("MainMenu");
 		}
 	}
 }

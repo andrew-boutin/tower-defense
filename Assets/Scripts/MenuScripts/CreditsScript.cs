@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class CreditsScript : MonoBehaviour {
 	
@@ -12,7 +12,7 @@ public class CreditsScript : MonoBehaviour {
 		// Display 3 buttons
 		if (GUI.Button (new Rect (10, 40, 150, 25), "Main Menu")) {
 			// Load the level selection scene	
-			Application.LoadLevel("MainMenu");
+			SceneManager.LoadScene("MainMenu");
 		}
 		else if(GUI.Button(new Rect(10, 70, 150, 25), "Portfolio Website")){
 			Application.OpenURL("http://www.andrewboutin.com");

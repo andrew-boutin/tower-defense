@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 // Handles drawing all GUI elements.  Borders, cell highlighting on map
 // and controls panel.  Controls that are displayed depend on game 
