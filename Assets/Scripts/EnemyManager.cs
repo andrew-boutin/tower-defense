@@ -19,7 +19,6 @@ public class EnemyManager : MonoBehaviour {
 	private int numEnemiesInRound;
 
 	private MapScript mapScript;
-	private InputHandler inputHandler;
 
 	private MapScript.WaveInfo waveInfo;
 
@@ -48,7 +47,6 @@ public class EnemyManager : MonoBehaviour {
 
 	public void levelLoad(){
 		mapScript = GameObject.Find ("MapAdmin").GetComponent<MapScript> ();
-		inputHandler = gameObject.GetComponent<InputHandler> ();
 		
 		startLoc = mapScript.getStartLoc();
 
@@ -117,14 +115,14 @@ public class EnemyManager : MonoBehaviour {
 	}
 
 	// 0 reward means wasn't killed, reached the end
-	public void onEnemyDeath(int reward){
-		if (reward == 0) {
-			inputHandler.onEnemyLeak();
+	public void onEnemyDeath(int killWorth){
+		numEnemiesDestroyed++;
+
+		if (killWorth == 0) {
+			GameManager.onEnemyLeak ();
 		} 
 		else { // Tally the kill, get money
-			inputHandler.onEnemyKill (reward);
+			GameManager.onEnemyKill (killWorth);
 		}
-
-		numEnemiesDestroyed++;
 	}
 }

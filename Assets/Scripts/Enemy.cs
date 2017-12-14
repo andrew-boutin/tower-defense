@@ -20,7 +20,6 @@ public class Enemy : MonoBehaviour {
 			wayPoints.Add(vec);
 		}
 
-		// TODO set targetWaypoint as first one in list
 		if (wayPoints.Count > 0){
 			targetWaypoint = wayPoints [0];
 			wayPoints.Remove(targetWaypoint);
@@ -33,11 +32,11 @@ public class Enemy : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (GameManager.curGameState != GameState.Paused && GameManager.curGameState != GameState.GameOver) {
+		if (GameManager.curGameState == GameState.RoundPlaying) {
 			if (health <= 0)
 				die ();
-
-			move ();
+			else
+				move ();
 		}
 	}
 

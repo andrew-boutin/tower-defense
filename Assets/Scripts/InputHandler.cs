@@ -61,18 +61,6 @@ public class InputHandler : MonoBehaviour {
 			GameManager.curGameState = GameState.RoundPlaying;
 		}
 	}
-
-	public void onEnemyKill(int val){
-		GameManager.addKill();
-		gameManager.addMoney (val);
-		gameMenu.setCurMoney (gameManager.getCurMoney ());
-	}
-
-	public void onEnemyLeak() {
-		GameManager.addLeak ();
-		// TODO: Could have different health values based on the enemy
-		GameManager.loseHealth (10);
-	}
 	
 	public void requestPause(){ 
 		if (GameManager.curGameState == GameState.RoundPlaying) { // have to be roundPlaying
@@ -103,19 +91,6 @@ public class InputHandler : MonoBehaviour {
 			gameMenu.currentSelectedTower.deSelected();
 
 		gameMenu.currentSelectedTower = baseTower;
-	}
-
-	public void destroyTower(){
-		BaseTower curBaseTower = gameMenu.currentSelectedTower;
-
-		if(curBaseTower == null)
-			return;
-
-		int value = curBaseTower.getDestroyReward();
-		Destroy (curBaseTower.gameObject);
-		gameMenu.currentSelectedTower = null;
-		gameManager.addMoney (value);
-		gameMenu.setCurMoney (gameManager.getCurMoney ());
 	}
 
 	// TODO: Set the costs here and in menu correctly

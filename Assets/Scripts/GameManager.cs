@@ -2,8 +2,7 @@
 using System.Collections;
 
 public class GameManager : MonoBehaviour {
-	private GameMenu gameMenu;
-	private int curMoney;
+	private static GameMenu gameMenu;
 
 	private EnemyManager enemyManager;
 	private GridManager gridManager;
@@ -15,12 +14,11 @@ public class GameManager : MonoBehaviour {
 	private static int numTotalRounds;
 	private static int numKills;
 	private static int numLeaks;
+	private static int curMoney;
+	private static int health;
+	private static int score;
 
 	private MapScript mapScript;
-
-	private static int health;
-
-	private static int score;
 
 	// Use this for initialization
 	void Start () {
@@ -32,7 +30,7 @@ public class GameManager : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-
+		
 	}
 
 	public void levelLoad(){
@@ -59,11 +57,6 @@ public class GameManager : MonoBehaviour {
 
 	public void subtractMoney(int val){
 		curMoney -= val;
-	}
-
-	public void addMoney(int val){
-		curMoney += val;
-		score += val;
 	}
 
 	public void setUpNextRound(){
@@ -100,16 +93,32 @@ public class GameManager : MonoBehaviour {
 		return numLeaks;
 	}
 
-	public static void addLeak() {
+	public static void onEnemyLeak() {
 		numLeaks++;
-	}
 
-	public static void loseHealth(int val) {
-		health -= val;
+		health -= 10;
 
-		if (health < 0) {
+		if (health <= 0) {
 			health = 0;
 			curGameState = GameState.GameOver;
 		}
+	}
+
+	private static void addMoney(int value) {
+		curMoney += value;
+		score += value;
+	}
+
+	public static void onEnemyKill(int killWorth) {
+		numKills++;
+		addMoney (killWorth);
+		gameMenu.setCurMoney (curMoney);
+	}
+
+	public static void destroyTower(BaseTower curBaseTower) {
+		int value = curBaseTower.getDestroyReward();
+		Destroy (curBaseTower.gameObject);
+		addMoney (value);
+		gameMenu.setCurMoney (curMoney);
 	}
 }

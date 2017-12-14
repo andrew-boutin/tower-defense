@@ -65,10 +65,10 @@ public class GameMenu : MonoBehaviour {
 			if (GUI.Button (playOptionRect, "Resume Round")) {
 				inputHandler.resumeRound ();
 			}	
-		} else if (curGameState == GameState.LevelCompleted) {
+		} else if (curGameState == GameState.LevelCompleted || curGameState == GameState.GameOver) {
 			int roundNum = GameManager.getRoundNum ();
 
-			if (roundNum == GameManager.getNumTotalRounds ()) {
+			if (roundNum == GameManager.getNumTotalRounds () || curGameState == GameState.GameOver) {
 				if(GUI.Button(playOptionRect, "End Game")){
 					inputHandler.goToMainMenu ();
 				}
@@ -194,7 +194,8 @@ public class GameMenu : MonoBehaviour {
 			int val = currentSelectedTower.getDestroyReward ();
 
 			if (GUI.Button (new Rect (menuX, buttonMenuStartY, menuItemWidth, buttonMenuHeight), "Destroy Tower\n\nWorth " + val)) {
-				inputHandler.destroyTower ();
+				GameManager.destroyTower (currentSelectedTower);
+				currentSelectedTower = null;
 				menuState = MenuState.OuterMenu;
 			}
 		}

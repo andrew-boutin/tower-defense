@@ -9,6 +9,9 @@ public class Levels : MonoBehaviour {
 		if (GUI.Button (new Rect (10, 40, 150, 20), "Main Menu")) {
 			SceneManager.LoadScene("MainMenu");
 		}
+
+		GUI.Label (new Rect (200, 187, 100, 25), "Map 1", "box");
+		GUI.Label (new Rect (500, 187, 100, 25), "Map 2", "box");
 	}
 
 	void loadMap(int mapNum, string mapName){
