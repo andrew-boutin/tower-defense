@@ -1,12 +1,10 @@
 # Tower Defense
 
-This is a basic tower defense game written in C# using Unity.
+This is a tower defense game written in C# using Unity.
 
-Focus is on making a basic functioning TD game - not things like game balancing.
+In Crazy Canal Tower Defense, your objective is to strategically place defense towers to prevent enemy water craft from reaching the end of the canal!
 
 ---
 
-###### Author
+Check out my [personal website](https://andrewboutin.com)!
 
-Andy Boutin
-www.andrewboutin.com  
