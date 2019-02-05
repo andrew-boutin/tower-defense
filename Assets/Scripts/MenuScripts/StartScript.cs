@@ -7,9 +7,4 @@ public class StartScript : MonoBehaviour {
 	void Start () {
 		SceneManager.LoadScene ("MainMenu");
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }

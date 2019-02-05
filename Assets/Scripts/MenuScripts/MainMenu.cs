@@ -4,27 +4,22 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour {
 	
 	void OnGUI(){
-		// Hide the button background
-		//GUI.backgroundColor = Color.clear;
-
 		GUI.Label (new Rect (10, 10, 150, 20), "Main Menu");
 
 		// Display 3 buttons
-		if (GUI.Button (new Rect (10, 40, 150, 20), "Select Level")) {
-			// Load the level selection scene		
-			SceneManager.LoadScene("Levels");
+		if(GUI.Button(new Rect(10, 40, 150, 20), "Developer's Website")){
+			Application.OpenURL("https://andrewboutin.com");
 		}
-		else if(GUI.Button(new Rect(10, 70, 150, 20), "Game Info / Options")){
-			// Load the gameinfo/options scene
-			SceneManager.LoadScene("GameInfo");
+		else if(GUI.Button(new Rect(10, 70, 150, 20), "Code Repository")){
+			Application.OpenURL("https://github.com/andrew-boutin/tower-defense");
 		}
-		else if(GUI.Button(new Rect(10, 100, 150, 20), "Credits")){
-			// Load the credits scene
-			SceneManager.LoadScene("Credits");
-		}
-		else if(GUI.Button(new Rect(10, 130, 150, 20), "Exit Game")){
-			Application.Quit();
-		}
+
+		GUI.Label (new Rect (200, 187, 100, 25), "Map 1", "box");
+		GUI.Label (new Rect (500, 187, 100, 25), "Map 2", "box");
 	}
-	
+
+	void loadMap(int mapNum, string mapName){
+		MapInfo.setMapNum(mapNum);
+		SceneManager.LoadScene(mapName);
+	}
 }
