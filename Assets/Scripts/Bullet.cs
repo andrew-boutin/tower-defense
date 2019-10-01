@@ -21,8 +21,19 @@ public class Bullet : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		if(GameManager.curGameState == GameState.Paused){
+	void Update () 
+	{
+	   BulletControl();
+	}
+		
+	public void setDamage(int val){
+		damage = val;
+	}
+	
+	void BulletControl()
+	{
+		
+	if(GameManager.curGameState == GameState.Paused){
 			gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
 			gameObject.GetComponent<Rigidbody2D>().angularVelocity = 0;
 			wasPaused = true;
@@ -40,10 +51,6 @@ public class Bullet : MonoBehaviour {
 		if (distanceTravelled >= maxDistance) {
 			Destroy(gameObject);		
 		}
-	}
-
-	public void setDamage(int val){
-		damage = val;
 	}
 
 	/**
